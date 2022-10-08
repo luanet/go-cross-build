@@ -69,17 +69,11 @@ func build(packageName, destDir string, platform map[string]string, ldflags stri
 	buildFilePath := filepath.Join(destDirPath, buildFileName)
 
 	// package directory local path
-	var packagePath string
-	if packageName == "" {
-		packagePath = "."
-	} else {
-		packagePath = "./" + packageName
-	}
 
 	/*------------*/
 
 	// command-line options for the `go build` command
-	buildOptions := []string{"build", "-buildmode", "exe", "-ldflags", ldflags, "-o", buildFilePath, packagePath}
+	buildOptions := []string{"build", "-buildmode", "exe", "-ldflags", ldflags, "-o", buildFilePath, packageName}
 
 	// generate `go build` command
 	buildCmd := exec.Command("go", buildOptions...)
